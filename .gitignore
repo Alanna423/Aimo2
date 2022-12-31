@@ -405,4 +405,4 @@ ASALocalRun/
 .localhistory/
 
 app.db
-Data/Migrations
+Data/Migrations/
