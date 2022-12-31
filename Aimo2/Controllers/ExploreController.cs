@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Aimo.Models;
 using Aimo2.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Aimo2.Controllers
 {
@@ -20,6 +21,7 @@ namespace Aimo2.Controllers
         }
 
         // GET: Explore
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Explore != null ? 
@@ -28,6 +30,7 @@ namespace Aimo2.Controllers
         }
 
         // GET: Explore/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Explore == null)
@@ -46,6 +49,7 @@ namespace Aimo2.Controllers
         }
 
         // GET: Explore/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +60,7 @@ namespace Aimo2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Type,Requester,Accepted_By,Due_Date,Status")] Explore explore)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace Aimo2.Controllers
         }
 
         // GET: Explore/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Explore == null)
@@ -88,6 +94,7 @@ namespace Aimo2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Requester,Accepted_By,Due_Date,Status")] Explore explore)
         {
             if (id != explore.Id)
@@ -119,6 +126,7 @@ namespace Aimo2.Controllers
         }
 
         // GET: Explore/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Explore == null)
@@ -139,6 +147,7 @@ namespace Aimo2.Controllers
         // POST: Explore/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Explore == null)
